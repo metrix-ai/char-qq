@@ -30,7 +30,7 @@ ord = QuasiQuoter exp pat typ dec where
   dec = const (fail "Unsupported")
 
 {-|
-A quasi-quoter which produces a list of unicode codepoint integral literals of a sequence of chars.
+A quasi-quoter which produces a list of unicode codepoint integer literals of a sequence of chars.
 E.g.,
 
 >>> [CharQq.ords|абв|]
@@ -49,7 +49,7 @@ ords = QuasiQuoter exp pat typ dec where
 A quasi-quoter which produces a char literal from a codepoint.
 E.g.,
 
->>> [chr|90|]
+>>> [CharQq.chr|90|]
 'Z'
 
 Works in the context of expressions and patterns.
