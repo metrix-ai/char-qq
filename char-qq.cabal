@@ -1,5 +1,5 @@
 name: char-qq
-version: 0.1
+version: 0.1.1
 category: QuasiQuotes
 synopsis: Quasiquoters for characters and codepoints
 description: A set of quasiquoters providing compile-time conversions between characters and codepoints.
