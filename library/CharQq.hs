@@ -6,9 +6,7 @@ module CharQq
 where
 
 import CharQq.Prelude hiding (ord, chr)
-import Language.Haskell.TH.Syntax
-import Language.Haskell.TH.Quote
-import qualified CharQq.Prelude as Prelude
+import qualified CharQq.Q as Q
 
 
 -- * Quasi-quoters
@@ -25,8 +23,8 @@ Works in the context of expressions and patterns.
 -}
 ord :: QuasiQuoter
 ord = QuasiQuoter exp pat typ dec where
-  exp = stringOrdExpQ
-  pat = stringOrdPatQ
+  exp = Q.stringCodepointExp
+  pat = Q.stringCodepointPat
   typ = const (fail "Unsupported")
   dec = const (fail "Unsupported")
 
@@ -41,28 +39,7 @@ Works in the context of expressions and patterns.
 -}
 ords :: QuasiQuoter
 ords = QuasiQuoter exp pat typ dec where
-  exp = stringOrdsExpQ
-  pat = stringOrdsPatQ
+  exp = Q.stringCodepointsExp
+  pat = Q.stringCodepointsPat
   typ = const (fail "Unsupported")
   dec = const (fail "Unsupported")
-
--- * Q
--------------------------
-
-stringOrdExpQ :: String -> Q Exp
-stringOrdExpQ = \ case
-  [char] -> return (LitE (IntegerL (fromIntegral (Prelude.ord char))))
-  [] -> fail "Empty quotation"
-  _ -> fail "Overlong quotation"
-
-stringOrdPatQ :: String -> Q Pat
-stringOrdPatQ = \ case
-  [char] -> return (LitP (IntegerL (fromIntegral (Prelude.ord char))))
-  [] -> fail "Empty quotation"
-  _ -> fail "Overlong quotation"
-
-stringOrdsExpQ :: String -> Q Exp
-stringOrdsExpQ = return . ListE . map (LitE . IntegerL . fromIntegral . Prelude.ord)
-
-stringOrdsPatQ :: String -> Q Pat
-stringOrdsPatQ = return . ListP . map (LitP . IntegerL . fromIntegral . Prelude.ord)

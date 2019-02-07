@@ -21,7 +21,6 @@ import Data.Bool as Exports
 import Data.Char as Exports
 import Data.Coerce as Exports
 import Data.Complex as Exports
-import Data.Data as Exports
 import Data.Dynamic as Exports
 import Data.Either as Exports
 import Data.Fixed as Exports
@@ -50,7 +49,7 @@ import Foreign.ForeignPtr as Exports
 import Foreign.Ptr as Exports
 import Foreign.StablePtr as Exports
 import Foreign.Storable as Exports hiding (sizeOf, alignment)
-import GHC.Conc as Exports hiding (withMVar, threadWaitWriteSTM, threadWaitWrite, threadWaitReadSTM, threadWaitRead)
+import GHC.Conc as Exports hiding (reportError, withMVar, threadWaitWriteSTM, threadWaitWrite, threadWaitReadSTM, threadWaitRead)
 import GHC.Exts as Exports (lazy, inline, sortWith, groupWith)
 import GHC.Generics as Exports (Generic)
 import GHC.IO.Exception as Exports
@@ -69,3 +68,8 @@ import Text.ParserCombinators.ReadPrec as Exports (ReadPrec, readPrec_to_P, read
 import Text.Printf as Exports (printf, hPrintf)
 import Text.Read as Exports (Read(..), readMaybe, readEither)
 import Unsafe.Coerce as Exports
+
+-- template-haskell
+-------------------------
+import Language.Haskell.TH.Syntax as Exports
+import Language.Haskell.TH.Quote as Exports

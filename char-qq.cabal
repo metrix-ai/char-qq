@@ -24,7 +24,10 @@ library
   exposed-modules:
     CharQq
   other-modules:
+    CharQq.Exp
+    CharQq.Pat
     CharQq.Prelude
+    CharQq.Q
   build-depends:
     base >=4.9 && <5,
     template-haskell >=2.9 && <3
