@@ -9,3 +9,6 @@ codepoint = LitP . IntegerL . fromIntegral . ord
 
 codepoints :: [Char] -> Pat
 codepoints = ListP . map codepoint
+
+char :: Char -> Pat
+char = LitP . CharL

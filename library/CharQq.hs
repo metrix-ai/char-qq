@@ -2,6 +2,7 @@ module CharQq
 (
   ord,
   ords,
+  chr,
 )
 where
 
@@ -41,5 +42,21 @@ ords :: QuasiQuoter
 ords = QuasiQuoter exp pat typ dec where
   exp = Q.stringCodepointsExp
   pat = Q.stringCodepointsPat
+  typ = const (fail "Unsupported")
+  dec = const (fail "Unsupported")
+
+{-|
+A quasi-quoter which produces a char literal from a codepoint.
+E.g.,
+
+>>> [chr|90|]
+'Z'
+
+Works in the context of expressions and patterns.
+-}
+chr :: QuasiQuoter
+chr = QuasiQuoter exp pat typ dec where
+  exp = Q.stringCodepointCharExp
+  pat = Q.stringCodepointCharPat
   typ = const (fail "Unsupported")
   dec = const (fail "Unsupported")

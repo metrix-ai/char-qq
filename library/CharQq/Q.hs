@@ -23,3 +23,22 @@ stringCodepointsExp = return . Exp.codepoints
 
 stringCodepointsPat :: String -> Q Pat
 stringCodepointsPat = return . Pat.codepoints
+
+codepointChar :: Int -> Q Char
+codepointChar codepoint = if codepoint <= ord maxBound
+  then return (chr codepoint)
+  else fail "Codepoint is out of the supported Unicode range"
+
+stringInt :: String -> Q Int
+stringInt string = case readMaybe string of
+  Just int -> return int
+  Nothing -> fail "String doesn't parse to integer"
+
+stringCodepointChar :: String -> Q Char
+stringCodepointChar = stringInt >=> codepointChar
+
+stringCodepointCharExp :: String -> Q Exp
+stringCodepointCharExp = fmap Exp.char . stringCodepointChar
+
+stringCodepointCharPat :: String -> Q Pat
+stringCodepointCharPat = fmap Pat.char . stringCodepointChar
