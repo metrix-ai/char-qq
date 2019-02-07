@@ -2,7 +2,11 @@ name: char-qq
 version: 0.1.1.1
 category: QuasiQuotes
 synopsis: Quasiquoters for characters and codepoints
-description: A set of quasiquoters providing compile-time conversions between characters and codepoints.
+description:
+  A set of quasiquoters providing compile-time conversions between characters and codepoints.
+  .
+  Solves such problems as when you'd rather refer to a codepoint by a char,
+  but don't want to waste your runtime computation cycles on the "ord" operation.
 homepage: https://github.com/metrix-ai/char-qq
 bug-reports: https://github.com/metrix-ai/char-qq/issues
 author: Nikita Volkov <nikita.y.volkov@mail.ru>
